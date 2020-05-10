@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Onur Yasarlar
+  description: Provision a new VM from CentOS 7 cloud image
+  company: Onur Lab
+  role_name: kvm-manual-provisioning
+
+  license: license MIT
+
+  min_ansible_version: 2.7
+
+  platforms:
+  - name: EL
+    versions:
+    - 7
+    - 8
+
+  galaxy_tags:
+    - kvm
+    - libvirt
+    - centos7
+    - centos8
+
+dependencies: []
