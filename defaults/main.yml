@@ -1,0 +1,13 @@
+---
+# defaults file for yasarlaro.kvm-manual-provisioning
+admin_user: "onur"
+admin_group: "wheel"
+admin_password: "passw0rd"
+vm_image: "centos7"
+vm_cpu: "1"
+vm_memory: "1024"
+vm_root_disk_size: "20G"
+vm_domain_name: "example.com"
+vm_netmask: "{{ ansible_default_ipv4['netmask'] }}"
+vm_gw: "{{ ansible_default_ipv4['netmask'] }}"
+vm_interface_name: "eth0"
