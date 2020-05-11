@@ -72,12 +72,12 @@
 
 - name: "Provision VM"
   shell: >
-    virt-install --import --name "{{ vm_name}}"
+    virt-install --import --name "{{ vm_name }}"
     --memory "{{ vm_memory }} "
     --vcpus "{{ vm_cpu }}"
     --cpu host 
-    --disk "{{ vm_name}}".qcow2,format=qcow2,bus=virtio 
-    --disk "{{ vm_name}}"-cidata.iso,device=cdrom 
+    --disk "{{ vm_name }}".qcow2,format=qcow2,bus=virtio 
+    --disk "{{ vm_name }}"-cidata.iso,device=cdrom 
     --network type=direct,source="{{ ansible_default_ipv4['interface'] }}",source.mode=bridge 
     --os-type=linux 
     --os-variant=centos7.0 
