@@ -2,7 +2,7 @@ galaxy_info:
   author: Onur Yasarlar
   description: Provision a new VM from CentOS 7 cloud image
   company: Onur Lab
-  role_name: kvm-cloud-init
+  role_name: kvm_cloud_init
 
   license: license MIT
 
