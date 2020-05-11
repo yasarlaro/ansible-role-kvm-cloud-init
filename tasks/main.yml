@@ -48,7 +48,7 @@
     remote_src: "yes"
 
 - name: "Resize VM boot disk"
-  shell: "qemu-img resize {{ vm_name }}.qcow2 {{vm_root_disk_size}}"
+  shell: "qemu-img resize {{ vm_name }}.qcow2 {{ vm_root_disk_size }}"
   args:
     chdir: "/var/lib/libvirt/images/{{ vm_name }}/"
 
