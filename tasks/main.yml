@@ -3,7 +3,7 @@
 - name: "Set VM name if it has not been defined"
   set_fact:
     vm_name: "test-{{ 1000 | random }}"
-  run_once: yes
+  run_once: "yes"
   when: vm_name is not defined
 
 - name: "Check if VM IP has been set"
@@ -44,7 +44,7 @@
   copy:
     src: "{{ image_path }}/{{ image_name }}"
     dest: "/var/lib/libvirt/images/{{ vm_name }}/{{ vm_name }}.qcow2"
-    remote_src: yes
+    remote_src: "yes"
 
 - name: "Resize VM boot disk"
   shell: "qemu-img resize {{ vm_name }}.qcow2 {{vm_root_disk_size}}"
@@ -70,7 +70,6 @@
     chdir: "/var/lib/libvirt/images/{{ vm_name }}/"
 
 - name: "Provision VM"
-  #shell: "virt-install --import --name {{ vm_name}} --memory {{ vm_memory }} --vcpus {{ vm_cpu }} --cpu host --disk {{ vm_name}}.qcow2,format=qcow2,bus=virtio --disk {{ vm_name}}-cidata.iso,device=cdrom --network type=direct,source={{ ansible_default_ipv4['interface'] }},source.mode=bridge --os-type=linux --os-variant=centos7.0 --graphics spice --noautoconsole"
   shell: >
     virt-install --import --name "{{ vm_name}}"
     --memory "{{ vm_memory }} "
