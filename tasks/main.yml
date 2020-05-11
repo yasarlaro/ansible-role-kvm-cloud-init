@@ -73,7 +73,7 @@
 - name: "Provision VM"
   shell: >
     virt-install --import --name "{{ vm_name }}"
-    --memory "{{ vm_memory }} "
+    --memory "{{ vm_memory }}"
     --vcpus "{{ vm_cpu }}"
     --cpu host 
     --disk "{{ vm_name }}".qcow2,format=qcow2,bus=virtio 
