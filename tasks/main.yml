@@ -8,7 +8,7 @@
 
 - name: "Check if VM IP has been set"
   fail:
-    msg: "No IP has been set to VM. Please set it by \"vm_ip\" variable"
+    msg: "No IP has been set to VM. Please set it by (vm_ip) variable"
   when: vm_ip is not defined
 
 - name: "Print VM Information"
@@ -24,7 +24,7 @@
   get_url:
     url: "{{ image_url }}"
     dest: "{{ image_path }}"
-  when: not image_exist.stat.isreg
+  when: not image_exist.stat.exists
 
 - name: "Check if VM directory exists"
   stat:
@@ -72,16 +72,16 @@
 - name: "Provision VM"
   #shell: "virt-install --import --name {{ vm_name}} --memory {{ vm_memory }} --vcpus {{ vm_cpu }} --cpu host --disk {{ vm_name}}.qcow2,format=qcow2,bus=virtio --disk {{ vm_name}}-cidata.iso,device=cdrom --network type=direct,source={{ ansible_default_ipv4['interface'] }},source.mode=bridge --os-type=linux --os-variant=centos7.0 --graphics spice --noautoconsole"
   shell: >
-    "virt-install --import --name {{ vm_name}} 
-     --memory {{ vm_memory }} 
-     --vcpus {{ vm_cpu }} 
-     --cpu host 
-     --disk {{ vm_name}}.qcow2,format=qcow2,bus=virtio 
-     --disk {{ vm_name}}-cidata.iso,device=cdrom 
-     --network type=direct,source={{ ansible_default_ipv4['interface'] }},source.mode=bridge 
-     --os-type=linux 
-     --os-variant=centos7.0 
-     --graphics spice 
-     --noautoconsole"
+    virt-install --import --name "{{ vm_name}}"
+    --memory "{{ vm_memory }} "
+    --vcpus "{{ vm_cpu }}"
+    --cpu host 
+    --disk "{{ vm_name}}".qcow2,format=qcow2,bus=virtio 
+    --disk "{{ vm_name}}"-cidata.iso,device=cdrom 
+    --network type=direct,source="{{ ansible_default_ipv4['interface'] }}",source.mode=bridge 
+    --os-type=linux 
+    --os-variant=centos7.0 
+    --graphics spice 
+    --noautoconsole
   args:
     chdir: "/var/lib/libvirt/images/{{ vm_name }}/"
