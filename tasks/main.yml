@@ -31,7 +31,8 @@
     path: "/var/lib/libvirt/images/{{ vm_name }}"
   register: image_dir
 
-- fail:
+- name: "Fail if VM directory exists"
+  fail:
     msg: "VM Image directory already exists for {{ vm_name }}"
   when: image_dir.stat.isdir is defined and image_dir.stat.isdir
 
